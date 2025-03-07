@@ -12,7 +12,6 @@ router.post("/place-bet", (req, res) => {
 
         db.query("SELECT balance FROM users WHERE id = ?", [userId], (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
-            console.log(results[0], bet_amount)
             if (parseInt(results[0].balance) < bet_amount) return res.status(400).json({ error: "Insufficient balance" });
 
             db.query("UPDATE users SET balance = balance - ? WHERE id = ?", [bet_amount, userId], (err) => {

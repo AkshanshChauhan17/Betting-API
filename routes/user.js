@@ -5,7 +5,7 @@ const db = require("../config/db");
 const router = express.Router();
 
 router.get("/info", (req, res) => {
-    const token = req.headers.authorization?.split(" ")[1];;
+    const token = req.headers.authorization?.split(" ")[1];
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.userId;
